@@ -6,7 +6,9 @@
   "license": "MIT",
   "dependencies": {
     "coffeeify": "~0.5.1",
-    "browserify": "~2.29.0"
+    "browserify": "~2.29.0",
+    "takeapeek": "~0.1.12",
+    "nodemon": "~0.7.10"
   },
   "repository": {
     "type": "git",
