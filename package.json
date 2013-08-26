@@ -1,0 +1,11 @@
+{
+  "name": "the-city",
+  "version": "0.1.0",
+  "description": "A javascript canvas art project",
+  "author": "Gio d'Amelio",
+  "license": "MIT",
+  "dependencies": {
+    "coffeeify": "~0.5.1",
+    "browserify": "~2.29.0"
+  }
+}
