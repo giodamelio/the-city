@@ -21,7 +21,7 @@ task "browserify:compile", "Compile the coffeescript", ->
     spawn path.browserify, "-t coffeeify -e app/src/main.coffee -o app/lib/bundle.js"
 
 task "browserify:watch", "Compile and watch the coffeescript", ->
-    spawn path.nodemon, "-w app/ -x browserify --transform coffeeify --entry app/src/main.coffee --outfile app/lib/bundle.js"
+    spawn path.nodemon, "-w app/ -x browserify --debug --transform coffeeify --entry app/src/main.coffee --outfile app/lib/bundle.js"
 
 task "server", "serve the static files", ->
     tap = new takeapeek
