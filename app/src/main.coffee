@@ -1,36 +1,33 @@
 $(document).ready ->
+    # Resize the canvas
+    $("#canvas").attr "width", window.innerWidth
+    $("#canvas").attr "height", window.innerHeight
+
+    # Make the canvas
     canvas = new fabric.Canvas "canvas",
         backgroundColor: "lightblue"
 
+    # Automatically resize on widow resize
+    $(window).resize ->
+        canvas.setDimensions
+            width: window.innerWidth
+            height: window.innerHeight
+
+    # Make the rectangle
     rect = new fabric.Rect
-      left: 100
-      top: 100
-      fill: 'red'
-      width: 25
-      height: 25
+        left: 100
+        top: 100
+        fill: "red"
+        width: 20
+        height: 20
 
-    canvas.add rect
-
-    canvas.on "mouse:move", (event) ->
-        if event.target
-            console.log "Hover"
-
+    # Make the rectangle non-selectable
     rect.selectable = false
 
-    $("#go").click ->
-        rect.animate "top", 50
-        rect.animate "left", 50
-        rect.animate "width", 50
-        rect.animate "height", 50
-        rect.animate "angle", 45
-
-    $("#reset").click ->
-        rect.animate "left", 100
-        rect.animate "top", 100
-        rect.animate "width", 25
-        rect.animate "height", 25
-        rect.animate "angle", 0
-
+    # Add the rectangle to the canvas
+    canvas.add rect
+        
+    # Animate the canvas
     animate = ->
         canvas.renderAll()
         requestAnimationFrame animate
