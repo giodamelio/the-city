@@ -20,3 +20,7 @@ $(document).ready ->
         labelTemplateLng: "X: {x}"
         enableUserInput: false
     ).addTo(map)
+
+    # Add a debug widget
+    debugControl = require("./controls/debug.coffee")
+    map.addControl new debugControl() 
