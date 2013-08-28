@@ -1,46 +1,47 @@
 $(document).ready ->
+    # Get the container
+    canvasContainer = $("#canvasContainer")
+
     # Resize the canvas
-    $("#canvasContainer").attr "width", window.innerWidth
-    $("#canvasContainer").attr "height", window.innerHeight
+    canvasContainer.attr "width", window.innerWidth
+    canvasContainer.attr "height", window.innerHeight
 
     # Set the stage
     stage = new Kinetic.Stage
         container: "canvasContainer"
         width: window.innerWidth
         height: window.innerHeight
+        draggable: true
+
+    # Make it a bit bigger
+    stage.setWidth stage.getWidth() + 200
+    stage.setHeight stage.getHeight() + 200
+    stage.setOffset 100, 100
 
     # Automatically resize on widow resize
     $(window).resize ->
         stage.setSize window.innerWidth, window.innerHeight
 
     # Make a layer
-    layer = new Kinetic.Layer()
+    layer = new Kinetic.Layer
 
-    # Make a rectangle
-    rect = new Kinetic.Rect
-        x: 40
-        y: 40
-        width: 20
-        height: 20
-        fill: "red"
+    # Make a border around the stage
+    borderRect = new Kinetic.Rect
+        x: 0
+        y: 0
+        width: stage.getWidth()
+        height: stage.getHeight()
+        fill: "rgba(0,0,0,0)"
+        stroke: "black",
+        strokeWidth: 2
 
-    # Say Hello World
-    text = new Kinetic.Text
-        x: stage.getWidth() / 2,
-        y: stage.getHeight() / 2,
-        text: "Hello World!",
-        fontSize: 30,
-        fontFamily: "Calibri",
-        fill: "green"
-
-    # Use an offset to center the text
-    text.setOffset
-        x: text.getWidth() / 2
-        y: text.getHeight() / 2
+    # Listen for key presses
+    $(window).keyup (event) ->
+        if event.keyCode == 71
+            console.log "Toggling Grid"
 
     # Add the rect and text to the layer
-    layer.add rect
-    layer.add text
+    layer.add borderRect
 
     # Add the layer to the stage
     stage.add layer
