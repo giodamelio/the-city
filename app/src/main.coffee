@@ -11,3 +11,12 @@ $(document).ready ->
     L.tileLayer("http://localhost:3141/test.png",
         maxZoom: 9
     ).addTo(map)
+
+    # Add a mouse coordinates widget
+    L.control.coordinates(
+        position: "bottomright"
+        decimals: 2
+        labelTemplateLat: "Y: {y}"
+        labelTemplateLng: "X: {x}"
+        enableUserInput: false
+    ).addTo(map)
