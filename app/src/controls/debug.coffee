@@ -15,11 +15,14 @@ module.exports = L.Control.extend
         # Make the basic layout
         markup = $(
             """
-            <div class="uiElement button">
+            <div class="uiElement">
                 <button id="goHome">Go to 0, 0!</button>
             </div>
             <div class="uiElement">
-                <span id="zoom" class="labelFirst"></span>
+                <span id="coords" class="label"></span>
+            </div>
+            <div class="uiElement">
+                <span id="zoom" class="label"></span>
             </div>
             """
         )
@@ -29,15 +32,25 @@ module.exports = L.Control.extend
         button.click ->
             map.setView [0, 0], map.getZoom()
 
+        # Make a coords display
+        coords = markup.children "#coords"
+
+        ## Set the default
+        coords.text "X: 0, Y: 0"
+
+        ## Update on mouse change
+        map.on "mousemove", (event) ->
+            coords.html "X: #{event.latlng.lat}, Y: #{event.latlng.lng}"
+
         # Make a zoom display
         zoom = markup.children "#zoom"
 
         ## Set the level
-        zoom.text map.getZoom()
+        zoom.text "Zoom Level: " + map.getZoom()
 
         ## Set the zoom level when it changes
         map.on "zoomend", ->
-            zoom.text map.getZoom()
+            zoom.text "Zoom Level: " + map.getZoom()
 
         # Append the controls to the container
         container.append markup
