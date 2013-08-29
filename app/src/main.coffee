@@ -2,6 +2,9 @@ $(document).ready ->
     # Make the map
     map = L.map("map",
         crs: L.CRS.Simple # Simple coord system
+        zoom: 2
+        maxZoom: 9
+        maxBounds: [[-50, -50], [50, 50]]
     ).setView([0, 0], 2)
 
     # Add the tiles

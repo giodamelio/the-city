@@ -8,3 +8,18 @@ html, body {
     height: 100%;
     width: 100%;
 }
+
+/* Debug control styles */
+.leaflet-control-debug {
+    background-color: #D8D8D8;
+    background-color: rgba(255,255,255,.8);
+    cursor: pointer;
+}
+.leaflet-control-debug {
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+}
+.leaflet-control-debug .uiElement {
+    margin: 4px
+}
