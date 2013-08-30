@@ -7,13 +7,17 @@ $(document).ready ->
         maxBounds: [[-500, -500], [500, 500]]
     ).setView([0, 0], 1)
 
-    # Add the tiles
-    L.tileLayer("http://localhost:3141/test.png",
+    # Add a ContainerLayer
+    tileLayerContainer = require "./TileLayer.Container.coffee"
+    canvasTiles = tileLayerContainer(
         tms: true # Invert the cords system
         continuousWorld: true # No horizontal wrap
         noWrap: true # No wrap
         attribution: "Built by <a href=\"http://github.com/giodamelio\">giodamelio</a>"
     ).addTo(map)
+
+    ## Draw the tiles
+    canvasTiles.drawTile = require "./layers/main.coffee"
 
     # Add a marker at 0, 0
     L.marker([0, 0]).addTo(map)
@@ -25,5 +29,5 @@ $(document).ready ->
     ).addTo(map)
 
     # Add a debug widget
-    debugControl = require("./controls/debug.coffee")
+    debugControl = require "./controls/debug.coffee"
     map.addControl new debugControl() 
