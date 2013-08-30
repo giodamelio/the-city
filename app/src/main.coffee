@@ -8,7 +8,7 @@ $(document).ready ->
     ).setView([0, 0], 1)
 
     # Add the tiles
-    L.tileLayer("http://localhost:3141/images/1/{x}_{y}.png",
+    L.tileLayer("http://localhost:3141/test.png",
         tms: true # Invert the cords system
         continuousWorld: true # No horizontal wrap
         noWrap: true # No wrap
@@ -18,13 +18,11 @@ $(document).ready ->
     # Add a marker at 0, 0
     L.marker([0, 0]).addTo(map)
 
-    # Add a square around 0, 0
-    polygon = L.polygon([
-        [-100, -100],
-        [-100, 100],
-        [100, 100],
-        [100, -100]
-    ]).addTo(map)
+    # Add a square around the max bounds
+    L.rectangle([[-500, -500], [500, 500]],
+        color: "#1111ff"
+        fill: false
+    ).addTo(map)
 
     # Add a debug widget
     debugControl = require("./controls/debug.coffee")
