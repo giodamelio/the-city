@@ -7,29 +7,14 @@ $(document).ready ->
         maxBounds: [[-1024, -1024], [1024, 1024]]
     ).setView([0, 0], 1)
 
-    # Add a ContainerLayer
-    tileLayerContainer = require "./TileLayer.Container.coffee"
-    canvasTiles = tileLayerContainer(
-        tms: true # Invert the cords system
-        continuousWorld: true # No horizontal wrap
-        noWrap: true # No wrap
-        attribution: "Built by <a href=\"http://github.com/giodamelio\">giodamelio</a>"
-    )
-
-    ## Draw the tiles
-    canvasTiles.drawTile = require "./layers/main.coffee"
-
-    map.addLayer canvasTiles
+    # Add the grid layer
+    map.addLayer require("./layers/grid.coffee")
 
     # Add a marker at 0, 0
-    L.marker([0, 0]).addTo(map)
+    map.addLayer require("./layers/centerMarker.coffee")
 
     # Add a square around the max bounds
-    L.rectangle([[-1024, -1024], [1024, 1024]],
-        color: "#1111ff"
-        fill: false
-    ).addTo(map)
+    map.addLayer require("./layers/boundingBox.coffee")
 
     # Add a debug widget
-    debugControl = require "./controls/debug.coffee"
-    map.addControl new debugControl() 
+    map.addControl require("./controls/debug.coffee")

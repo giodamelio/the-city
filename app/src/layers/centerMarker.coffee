@@ -1,0 +1,1 @@
+module.exports = L.marker [0, 0]

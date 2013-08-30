@@ -1,4 +1,4 @@
-module.exports = L.Control.extend
+debugControl = L.Control.extend
     options:
         position: "topright"
 
@@ -57,3 +57,5 @@ module.exports = L.Control.extend
 
         # Translate the element to vanilla DOM and return it
         return container.get(0)
+
+module.exports = new debugControl()

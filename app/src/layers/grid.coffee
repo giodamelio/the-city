@@ -1,4 +1,14 @@
-module.exports = (container, tilePoint, zoom) ->
+# Add a ContainerLayer
+tileLayerContainer = require "../util/TileLayer.Container.coffee"
+
+canvasTiles = tileLayerContainer(
+    tms: true # Invert the cords system
+    continuousWorld: true # No horizontal wrap
+    noWrap: true # No wrap
+)
+
+## Draw the tiles
+canvasTiles.drawTile = (container, tilePoint, zoom) ->
     # Set the stage
     stage = new Kinetic.Stage
         container: container
@@ -14,9 +24,9 @@ module.exports = (container, tilePoint, zoom) ->
         y: 0
         width: 256
         height: 256
-        fill: "cyan"
-        stroke: "black"
-        strokeWidth: 1
+        fill: "#FFBA64"
+        stroke: "#3499DB"
+        strokeWidth: 2
 
     # Add the coords to the center
     coords = new Kinetic.Text
@@ -31,9 +41,11 @@ module.exports = (container, tilePoint, zoom) ->
         x: coords.getWidth() / 2
         y: coords.getHeight() / 2
 
-    # Add the background and coords to the layer
+    # Add the items to the layer
     layer.add background
     layer.add coords
 
     # A dd the layer to the stage
     stage.add layer
+
+module.exports = canvasTiles
