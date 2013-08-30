@@ -4,7 +4,7 @@ $(document).ready ->
         crs: L.CRS.Simple # Simple coord system
         maxZoom: 9
         minZoom: 1
-        maxBounds: [[-500, -500], [500, 500]]
+        maxBounds: [[-1024, -1024], [1024, 1024]]
     ).setView([0, 0], 1)
 
     # Add a ContainerLayer
@@ -14,16 +14,18 @@ $(document).ready ->
         continuousWorld: true # No horizontal wrap
         noWrap: true # No wrap
         attribution: "Built by <a href=\"http://github.com/giodamelio\">giodamelio</a>"
-    ).addTo(map)
+    )
 
     ## Draw the tiles
     canvasTiles.drawTile = require "./layers/main.coffee"
+
+    map.addLayer canvasTiles
 
     # Add a marker at 0, 0
     L.marker([0, 0]).addTo(map)
 
     # Add a square around the max bounds
-    L.rectangle([[-500, -500], [500, 500]],
+    L.rectangle([[-1024, -1024], [1024, 1024]],
         color: "#1111ff"
         fill: false
     ).addTo(map)
